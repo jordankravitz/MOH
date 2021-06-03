@@ -13,6 +13,7 @@ pw = 'vgYf9UeX7n23'
 
 #Gets current working directory
 cwd = os.getcwd()
+print (cwd)
 #sets the directory with the MOH files to the correct working directory + files (folder)
 dir_path = cwd + '''\\files'''
 
