@@ -13,9 +13,11 @@ pw = 'vgYf9UeX7n23'
 
 #Gets current working directory
 cwd = os.getcwd()
-print (cwd)
+
 #sets the directory with the MOH files to the correct working directory + files (folder)
-dir_path = cwd + '''\\files'''
+#dir_path = cwd + '''\\files'''
+#hard coded dir_path for Jenkins server
+dir_path = "\\automate\MOH\\files"
 
 #gets a list of all the files
 files = os.listdir(dir_path) 
