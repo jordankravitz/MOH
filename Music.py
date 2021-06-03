@@ -54,8 +54,9 @@ for file in newfiles:
 
 
         r.click ('FILE')
-        r.wait(4)
+        r.wait(15)
         keyboard.write(file_path)
+        r.wait(4)
         keyboard.press_and_release('enter')
         r.click('Upload File')
         r.wait(6)
