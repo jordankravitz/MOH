@@ -4,6 +4,8 @@ import os
 import rpa as r
 import sys
 import keyboard
+#import gitpython - can i have python delete all the MOH files within the "files" folder inside the repo to make upload easier?  
+
 
 #username and password to log into  Call Manager
 un = 'Automation'
