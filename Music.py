@@ -32,7 +32,7 @@ for file in files:
 
 newfiles = os.listdir(dir_path) 
 
-server_ips = ['172.16.1.15', '172.16.1.10', '10.2.121.15']
+server_ips = ['172.16.1.15']#, '172.16.1.10', '10.2.121.15']
 
 
 for file in newfiles:
