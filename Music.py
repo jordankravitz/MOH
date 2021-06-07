@@ -70,9 +70,12 @@ for file in newfiles:
         keyboard.press_and_release('enter')
         r.click('Upload File')
         r.wait(6)
+        
         if r.exist('Upload successful'):
             r.close()
+            logging.info("File Uploaded")
         else:
             r.wait(25)
             r.close()
+            logging.info("File Uploaded")
 
