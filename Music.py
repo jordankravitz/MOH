@@ -5,7 +5,8 @@ import rpa as r
 import sys
 import keyboard
 
-
+log = '''\\\\automate\\MOH\\log.txt''' 
+print ("starting MOH", log)
 
 #username and password to log into  Call Manager
 un = 'Automation'
@@ -39,7 +40,6 @@ server_ips = ['172.16.1.15']#, '172.16.1.10', '10.2.121.15']
 for file in newfiles:
     for server in server_ips:
         file_path = '''\\\\automate\\MOH\\files\\''' + file
-        log = file_path + "\\log.txt"
         r.init()
         moh_url = 'https://' + server +'/ccmadmin/mohAudioFileUpload.do?type=mohAudioManagement'
         r.url(moh_url)
