@@ -71,8 +71,11 @@ for file in newfiles:
         keyboard.send('enter')
         logging.info("enter has been pressed")
         r.click('Upload File')
-        r.wait(6)
+        logging.info("Upload has been clicked")
         
+        r.wait(20)
+        r.close
+'''
         if r.exist('Upload successful'):
             r.close()
             logging.info("File Uploaded")
@@ -80,4 +83,4 @@ for file in newfiles:
             r.wait(25)
             r.close()
             logging.info("File Uploaded")
-
+'''
