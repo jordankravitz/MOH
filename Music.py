@@ -70,6 +70,7 @@ for file in newfiles:
         logging.info("path typed - pressing enter to upload")
         keyboard.send('enter')
         logging.info("enter has been pressed")
+        r.wait (4)
         r.click('Upload File')
         logging.info("Upload has been clicked")
         
