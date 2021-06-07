@@ -4,9 +4,13 @@ import os
 import rpa as r
 import sys
 import keyboard
+import logging
 
 log = '''\\\\automate\\MOH\\log.txt''' 
-print ("starting MOH", log)
+logging.basicConfig(filename=log, level=logging.DEBUG, format='')
+
+
+logging.info("Starting Script")
 
 #username and password to log into  Call Manager
 un = 'Automation'
@@ -38,7 +42,9 @@ server_ips = ['172.16.1.15']#, '172.16.1.10', '10.2.121.15']
 
 
 for file in newfiles:
+    logging.info("Starting 1st for loop")
     for server in server_ips:
+        logging.info("Starting 2nd for loop")
         file_path = '''\\\\automate\\MOH\\files\\''' + file
         r.init()
         moh_url = 'https://' + server +'/ccmadmin/mohAudioFileUpload.do?type=mohAudioManagement'
@@ -54,12 +60,13 @@ for file in newfiles:
         r.type('j_password',pw)
         r.click('cuesLoginButton') 
 
-        print ("Clicking File Button", log)
+        logging.info("CLICKING FILE")
         r.click ('FILE')
         r.wait(15)
-        print ("Keyboard function to type the path", log)
+        logging.info("TYPING PATH")
         keyboard.write(file_path)
         r.wait(4)
+        logging.info("path typed - clicking enter to upload")
         keyboard.press_and_release('enter')
         r.click('Upload File')
         r.wait(6)
