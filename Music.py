@@ -37,6 +37,7 @@ server_ips = ['172.16.1.15']#, '172.16.1.10', '10.2.121.15']
 
 for file in newfiles:
     for server in server_ips:
+        print (server)
         file_path = '''\\\\automate\\MOH\\files\\''' + file
         r.init()
         moh_url = 'https://' + server +'/ccmadmin/mohAudioFileUpload.do?type=mohAudioManagement'
@@ -52,9 +53,10 @@ for file in newfiles:
         r.type('j_password',pw)
         r.click('cuesLoginButton') 
 
-
+        print ("Clicking File Button")
         r.click ('FILE')
         r.wait(15)
+        print ("Keyboard function to type the path")
         keyboard.write(file_path)
         r.wait(4)
         keyboard.press_and_release('enter')
