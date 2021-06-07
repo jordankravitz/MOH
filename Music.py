@@ -4,7 +4,7 @@ import os
 import rpa as r
 import sys
 import keyboard
-#import gitpython - can i have python delete all the MOH files within the "files" folder inside the repo to make upload easier?  
+
 
 
 #username and password to log into  Call Manager
@@ -35,10 +35,11 @@ newfiles = os.listdir(dir_path)
 server_ips = ['172.16.1.15']#, '172.16.1.10', '10.2.121.15']
 
 
+
 for file in newfiles:
     for server in server_ips:
-        print (server)
         file_path = '''\\\\automate\\MOH\\files\\''' + file
+        log = file_path + "\\log"
         r.init()
         moh_url = 'https://' + server +'/ccmadmin/mohAudioFileUpload.do?type=mohAudioManagement'
         r.url(moh_url)
@@ -53,10 +54,10 @@ for file in newfiles:
         r.type('j_password',pw)
         r.click('cuesLoginButton') 
 
-        print ("Clicking File Button")
+        print ("Clicking File Button", log)
         r.click ('FILE')
         r.wait(15)
-        print ("Keyboard function to type the path")
+        print ("Keyboard function to type the path", log)
         keyboard.write(file_path)
         r.wait(4)
         keyboard.press_and_release('enter')
