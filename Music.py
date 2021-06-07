@@ -4,6 +4,7 @@ import os
 import rpa as r
 import sys
 import keyboard
+from keyboard import press
 import logging
 
 log = '''\\\\automate\\MOH\\log.txt''' 
@@ -66,8 +67,9 @@ for file in newfiles:
         logging.info("TYPING PATH")
         keyboard.write(file_path)
         r.wait(4)
-        logging.info("path typed - clicking enter to upload")
-        keyboard.press_and_release('enter')
+        logging.info("path typed - pressing enter to upload")
+        keyboard.send('enter')
+        logging.info("enter has been pressed")
         r.click('Upload File')
         r.wait(6)
         
