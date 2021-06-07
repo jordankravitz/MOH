@@ -39,7 +39,7 @@ server_ips = ['172.16.1.15']#, '172.16.1.10', '10.2.121.15']
 for file in newfiles:
     for server in server_ips:
         file_path = '''\\\\automate\\MOH\\files\\''' + file
-        log = file_path + "\\log"
+        log = file_path + "\\log.txt"
         r.init()
         moh_url = 'https://' + server +'/ccmadmin/mohAudioFileUpload.do?type=mohAudioManagement'
         r.url(moh_url)
