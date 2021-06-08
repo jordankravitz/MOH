@@ -55,7 +55,7 @@ for file in newfiles:
         if r.exist('Proceed to ' + server +' (unsafe)'):
             r.click('Proceed to '+ server + ' (unsafe)')
 
-
+        
         #Login into CUCM with Username/PW
         r.type('j_username', un) 
         r.type('j_password',pw)
