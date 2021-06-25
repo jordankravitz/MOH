@@ -30,10 +30,18 @@ dir_path = "\\\\automate\\MOH\\files"
 files = os.listdir(dir_path)
 
 
+#Old renaming of OnHoldWizard filenames - they are now appending _CityName to their files
+#for file in files:
+#    if file.startswith('X'):
+#        os.rename(dir_path + '''\\'''+ file, dir_path + '''\\''' + "Landover.wav")
 
 for file in files:
     if file.startswith('X'):
-        os.rename(dir_path + '''\\'''+ file, dir_path + '''\\''' + "Landover.wav")
+        if file.find(*"_"):
+            newfile=file.split('_'[0])
+            #print (newfile[2])
+            os.rename(dir_path + file, dir_path + newfile[2])
+
 
 
 newfiles = os.listdir(dir_path) 
