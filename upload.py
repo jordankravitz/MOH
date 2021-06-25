@@ -39,7 +39,7 @@ for file in files:
         if file.find(*"_"):
             newfile=file.split('_'[0])
             #print (newfile[2])
-            os.rename(dir_path + file, dir_path + newfile[2])
+            os.rename(dir_path +"/"+ file, dir_path +"/"+ newfile[2])
 
 
 
