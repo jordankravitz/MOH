@@ -3,6 +3,7 @@ import rpa as r
 import sys
 import keyboard
 from keyboard import press
+import unzip
 #import logging
 
 
@@ -23,6 +24,7 @@ pw = 'vgYf9UeX7n23'
 
 #hard coded dir_path for Jenkins server
 dir_path = "//automate/MOH/files"
+unzip.Zipcleanup(dir_path)
 
 #gets a list of all the files
 files = os.listdir(dir_path)
