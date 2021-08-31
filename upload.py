@@ -3,7 +3,7 @@ import rpa as r
 import sys
 import keyboard
 from keyboard import press
-import MOH.unzip as unzip
+import unzip
 #import logging
 
 
