@@ -48,7 +48,7 @@ for file in files:
 
 newfiles = os.listdir(dir_path) 
 
-server_ips = ['10.176.0.10', '10.176.0.15']
+server_ips = ['10.176.0.10', '10.176.0.15', '10.176.80.10']
 
 
 for file in newfiles:
