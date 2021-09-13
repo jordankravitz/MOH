@@ -4,6 +4,7 @@ import sys
 import keyboard
 from keyboard import press
 import unzip
+import zipfile
 #import logging
 
 
@@ -24,7 +25,7 @@ pw = 'vgYf9UeX7n23'
 
 #hard coded dir_path for Jenkins server
 dir_path = 'C:\\Users\\j.kravitz\\Python\\CUCM\\MOH\\files'
-unzip.Zipcleanup(dir_path)
+#unzip.Zipcleanup(dir_path)
 
 #gets a list of all the files
 files = os.listdir(dir_path)
@@ -37,15 +38,19 @@ files = os.listdir(dir_path)
 #        os.rename(dir_path + '''\\'''+ file, dir_path + '''\\''' + "Landover.wav")
 
 for file in files:
+    print (file)
+    if file.endswith(".zip"):
+        zip=zipfile.ZipFile(file)
+        zip.extractall()
     if file.startswith('X'):
         if file.find(*"_"):
-            newfile=file.split('_'[0])
+                newfile=file.split('_'[0])
             #print (newfile[2])
-            os.rename(dir_path +"/"+ file, dir_path +"/"+ newfile[2])
+        os.rename(dir_path +"/"+ file, dir_path +"/"+ newfile[2])
 
 
 
-
+'''
 newfiles = os.listdir(dir_path) 
 
 server_ips = ['10.176.0.10']
@@ -78,3 +83,4 @@ for file in newfiles:
             r.wait(25)
             r.close()
     os.remove(file_path)
+'''

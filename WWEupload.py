@@ -4,6 +4,7 @@ import sys
 import keyboard
 from keyboard import press
 import unzip
+#import zipfile
 #import logging
 
 
@@ -24,7 +25,7 @@ pw = 'vgYf9UeX7n23'
 
 #hard coded dir_path for Jenkins server
 dir_path = "//automate/MOH/files"
-unzip.Zipcleanup(dir_path)
+#unzip.Zipcleanup(dir_path)
 
 #gets a list of all the files
 files = os.listdir(dir_path)
@@ -39,9 +40,9 @@ files = os.listdir(dir_path)
 for file in files:
     if file.startswith('X'):
         if file.find(*"_"):
-            newfile=file.split('_'[0])
+                newfile=file.split('_'[0])
             #print (newfile[2])
-            os.rename(dir_path +"/"+ file, dir_path +"/"+ newfile[2])
+        os.rename(dir_path +"/"+ file, dir_path +"/"+ newfile[2])
 
 
 
