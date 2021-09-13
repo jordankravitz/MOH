@@ -4,12 +4,12 @@ import sys
 import keyboard
 from keyboard import press
 import unzip
-import logging
+#import logging
 
 
 
-log = '''\\\\automate\\MOH\\log.txt''' 
-logging.basicConfig(filename=log, level=logging.DEBUG, format='')
+#log = '''\\\\automate\\MOH\\log.txt''' 
+#logging.basicConfig(filename=log, level=logging.DEBUG, format='')
 
 
 #username and password to log into  Call Manager
@@ -52,12 +52,12 @@ server_ips = ['10.176.0.10', '10.176.0.15', '10.176.80.10']
 
 
 for file in newfiles:
-    logging.info("Starting 1st for loop")
+    #logging.info("Starting 1st for loop")
     for server in server_ips:
         file_path = '//automate/MOH/files/' + file
         r.init()
         moh_url = 'https://' + server +'/ccmadmin/mohAudioFileUpload.do?type=mohAudioManagement'
-        logging.info(moh_url)
+        #logging.info(moh_url)
         r.url(moh_url)
         if r.exist('Advanced'):
             r.click('Advanced')
@@ -71,7 +71,7 @@ for file in newfiles:
         r.click('cuesLoginButton') 
 
         r.upload('#FILE', file_path)
-        logging.info(file_path)
+        #logging.info(file_path)
         r.click('Upload File')
         r.wait (10)
         if r.exist('Upload successful'):

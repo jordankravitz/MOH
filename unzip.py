@@ -2,7 +2,7 @@
 import zipfile, os
 
 def Zipcleanup(working_directory):    
-    os.chdir(working_directory)
+    #os.chdir(working_directory)
 
 
 
