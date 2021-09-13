@@ -57,6 +57,7 @@ for file in newfiles:
         file_path = '//automate/MOH/files/' + file
         r.init()
         moh_url = 'https://' + server +'/ccmadmin/mohAudioFileUpload.do?type=mohAudioManagement'
+        logging.info(moh_url)
         r.url(moh_url)
         if r.exist('Advanced'):
             r.click('Advanced')
@@ -70,6 +71,7 @@ for file in newfiles:
         r.click('cuesLoginButton') 
 
         r.upload('#FILE', file_path)
+        logging.info(file_path)
         r.click('Upload File')
         r.wait (10)
         if r.exist('Upload successful'):
