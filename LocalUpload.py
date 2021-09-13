@@ -4,12 +4,12 @@ import sys
 import keyboard
 from keyboard import press
 import unzip
-import logging
+#import logging
 
 
 
-log = '''\\\\automate\\MOH\\log.txt''' 
-logging.basicConfig(filename=log, level=logging.DEBUG, format='')
+#log = '''\\\\automate\\MOH\\log.txt''' 
+#logging.basicConfig(filename=log, level=logging.DEBUG, format='')
 
 
 #username and password to log into  Call Manager
@@ -23,7 +23,7 @@ pw = 'vgYf9UeX7n23'
 #dir_path = cwd + '''\\files'''
 
 #hard coded dir_path for Jenkins server
-dir_path = "//automate/MOH/files"
+dir_path = 'C:\\Users\\j.kravitz\\Python\\CUCM\\MOH\\files'
 unzip.Zipcleanup(dir_path)
 
 #gets a list of all the files
@@ -48,13 +48,13 @@ for file in files:
 
 newfiles = os.listdir(dir_path) 
 
-server_ips = ['10.176.0.10', '10.176.0.15', '10.176.80.10']
+server_ips = ['10.176.0.10']
 
 
 for file in newfiles:
-    logging.info("Starting 1st for loop")
+    #logging.info("Starting 1st for loop")
     for server in server_ips:
-        file_path = '//automate/MOH/files/' + file
+        file_path = 'C:\\Users\\j.kravitz\\Python\\CUCM\\MOH\\files\\' + file
         r.init()
         moh_url = 'https://' + server +'/ccmadmin/mohAudioFileUpload.do?type=mohAudioManagement'
         r.url(moh_url)
