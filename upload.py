@@ -3,7 +3,8 @@ import rpa as r
 import sys
 import keyboard
 from keyboard import press
-import unzip
+#import unzip
+import zipfile
 #import logging
 
 
@@ -24,12 +25,21 @@ pw = 'vgYf9UeX7n23'
 
 #hard coded dir_path for Jenkins server
 dir_path = "//automate/MOH/files"
-unzip.Zipcleanup(dir_path)
+
 
 #gets a list of all the files
 files = os.listdir(dir_path)
 
 
+#Unzip a zip file into specific directory then delete the zip file
+for file in files:
+    if file.endswith('.zip'):
+        zipname=dir_path + '\\' + file
+        #print (zipname)
+        with zipfile.ZipFile(zipname, 'r') as zipitem:
+            zipitem.printdir()
+            zipitem.extractall(path='//automate/MOH/files')
+        os.remove(zipname)
 
 #Old renaming of OnHoldWizard filenames - they are now appending _CityName to their files
 #for file in files:
@@ -50,6 +60,40 @@ newfiles = os.listdir(dir_path)
 
 server_ips = ['172.16.1.15', '172.16.1.10', '10.2.121.15']
 
+
+
+
+for server in server_ips:
+    r.init()
+    moh_url = 'https://' + server +'/ccmadmin/mohAudioFileUpload.do?type=mohAudioManagement'
+    r.url(moh_url)
+    if r.exist('Advanced'):
+        r.click('Advanced')
+    if r.exist('Proceed to ' + server +' (unsafe)'):
+        r.click('Proceed to '+ server + ' (unsafe)')
+
+        
+    #Login into CUCM with Username/PW
+    r.type('j_username', un) 
+    r.type('j_password',pw)
+    r.click('cuesLoginButton') 
+    for file in newfiles:
+        file_path = '//automate/MOH/files/' + file
+        r.upload('#FILE', file_path)
+        r.click('Upload File')
+        r.wait(15)
+        if r.exist('Upload successful'):
+            print("upload done")
+        else:
+            r.wait(25)
+    r.close()
+
+
+for file in newfiles:
+    os.remove('//automate/MOH/files/' + file)
+
+
+'''
 
 for file in newfiles:
     #logging.info("Starting 1st for loop")
@@ -78,3 +122,4 @@ for file in newfiles:
             r.wait(25)
             r.close()
     os.remove(file_path)
+'''

@@ -25,23 +25,28 @@ pw = 'vgYf9UeX7n23'
 
 #hard coded dir_path for Jenkins server
 dir_path = 'C:\\Users\\j.kravitz\\Python\\CUCM\\MOH\\files'
-#unzip.Zipcleanup(dir_path)
+
 
 #gets a list of all the files
 files = os.listdir(dir_path)
 
-
-
-#Old renaming of OnHoldWizard filenames - they are now appending _CityName to their files
-#for file in files:
-#    if file.startswith('X'):
-#        os.rename(dir_path + '''\\'''+ file, dir_path + '''\\''' + "Landover.wav")
-
+#Unzip a zip file into specific directory then delete the zip file
 for file in files:
-    print (file)
-    if file.endswith(".zip"):
-        zip=zipfile.ZipFile(file)
-        zip.extractall()
+    if file.endswith('.zip'):
+        zipname=dir_path + '\\' + file
+        #print (zipname)
+        with zipfile.ZipFile(zipname, 'r') as zipitem:
+            zipitem.printdir()
+            zipitem.extractall(path='C:\\Users\\j.kravitz\\Python\\CUCM\\MOH\\files')
+        os.remove(zipname)
+
+
+
+
+
+#Rename all the on hold media files - using only the city name as the file name.  
+#using the underscore as the delimiter to choose the correct field
+for file in files:
     if file.startswith('X'):
         if file.find(*"_"):
                 newfile=file.split('_'[0])
@@ -50,12 +55,45 @@ for file in files:
 
 
 
-'''
+
 newfiles = os.listdir(dir_path) 
 
+#server_ips = ['10.176.0.10', '10.176.0.15', '10.176.80.10']
 server_ips = ['10.176.0.10']
 
 
+for server in server_ips:
+    r.init()
+    moh_url = 'https://' + server +'/ccmadmin/mohAudioFileUpload.do?type=mohAudioManagement'
+    r.url(moh_url)
+    if r.exist('Advanced'):
+        r.click('Advanced')
+    if r.exist('Proceed to ' + server +' (unsafe)'):
+        r.click('Proceed to '+ server + ' (unsafe)')
+
+        
+    #Login into CUCM with Username/PW
+    r.type('j_username', un) 
+    r.type('j_password',pw)
+    r.click('cuesLoginButton') 
+    for file in newfiles:
+        file_path = 'C:\\Users\\j.kravitz\\Python\\CUCM\\MOH\\files\\' + file
+        r.upload('#FILE', file_path)
+        r.click('Upload File')
+        r.wait(15)
+        if r.exist('Upload successful'):
+            print("upload done")
+        else:
+            r.wait(25)
+    r.close()
+
+
+for file in newfiles:
+    os.remove('C:\\Users\\j.kravitz\\Python\\CUCM\\MOH\\files\\' + file)
+
+
+
+'''
 for file in newfiles:
     #logging.info("Starting 1st for loop")
     for server in server_ips:
@@ -77,10 +115,11 @@ for file in newfiles:
         r.upload('#FILE', file_path)
         r.click('Upload File')
         r.wait (10)
+        
         if r.exist('Upload successful'):
             r.close()
         else:
             r.wait(25)
             r.close()
-    os.remove(file_path)
 '''
+   #os.remove(file_path)
