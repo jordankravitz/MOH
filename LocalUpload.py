@@ -28,12 +28,12 @@ dir_path = 'C:\\Users\\j.kravitz\\Python\\CUCM\\MOH\\files'
 
 
 #gets a list of all the files
-files = os.listdir(dir_path)
+zippyfiles = os.listdir(dir_path)
 
 #Unzip a zip file into specific directory then delete the zip file
-for file in files:
-    if file.endswith('.zip'):
-        zipname=dir_path + '\\' + file
+for zippyfile in zippyfiles:
+    if zippyfile.endswith('.zip'):
+        zipname=dir_path + '\\' + zippyfile
         #print (zipname)
         with zipfile.ZipFile(zipname, 'r') as zipitem:
             zipitem.printdir()
@@ -42,7 +42,7 @@ for file in files:
 
 
 
-
+files = os.listdir(dir_path)
 
 #Rename all the on hold media files - using only the city name as the file name.  
 #using the underscore as the delimiter to choose the correct field
@@ -58,8 +58,10 @@ for file in files:
 
 newfiles = os.listdir(dir_path) 
 
+
+#server_ips = ['172.16.0.10', '172.16.0.15', '10.1.121.15']
 #server_ips = ['10.176.0.10', '10.176.0.15', '10.176.80.10']
-server_ips = ['10.176.0.10']
+server_ips = ['10.176.80.10']
 
 
 for server in server_ips:
